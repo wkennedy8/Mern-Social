@@ -143,7 +143,7 @@ exports.getFeed = async (req, res) => {
       })
     );
     let feedArray = [...feed.posts, ...array];
-    feedArray.sort((a, b) => b.updatedAt - a.updatedAt);
+    feedArray.sort((a, b) => b.createdAt - a.createdAt);
     res.status(200).json(feedArray);
   } catch (e) {
     res.status(400).json({ error: e.message });
