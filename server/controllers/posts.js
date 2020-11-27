@@ -5,7 +5,7 @@ const Post = require('../db/models/post');
 // ***********************************************//
 exports.createPost = async (req, res) => {
   try {
-    const post = await new Post(req.body);
+    const post = await new Post({ ...req.body, user: req.user.username });
     await post.save();
     req.user.posts.push(post._id);
     await req.user.save();
