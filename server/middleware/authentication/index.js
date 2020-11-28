@@ -3,9 +3,6 @@ const passport = require('passport'),
   User = require('../../db/models/user'),
   ExtractJwt = require('passport-jwt').ExtractJwt;
 
-// ******************************
-// JWT Strategy
-// ******************************
 let jwtOptions = {
   jwtFromRequest: (req) => {
     return req?.cookies?.jwt || ExtractJwt.fromAuthHeaderWithScheme('jwt')(req);

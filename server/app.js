@@ -13,14 +13,24 @@ const express = require('express'),
 
 // Parse incoming JSON into objects
 app.use(express.json());
+
+//Unauthenticated Routes
 app.use('/api/auth', openRoutes);
 
+//Middleware to parse through incoming cookies in the requests.
 app.use(cookieParser());
 
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
   app.use(express.static(path.resolve(__dirname, '..', 'client', 'build')));
 }
+
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/images'
+  })
+);
 
 //  Authenticated  Routes
 app.use('/api/*', passport.authenticate('jwt', { session: false }));

@@ -43,9 +43,10 @@ exports.loginUser = async (req, res) => {
 };
 
 // ***********************************************//
-// Get current user details
+// Logout a user
 // ***********************************************//
 exports.logoutUser = async (req, res) => {
+  console.log('req: ', req);
   try {
     req.user.tokens = req.user.tokens.filter((token) => {
       return token.token !== req.cookies.jwt;
@@ -54,7 +55,7 @@ exports.logoutUser = async (req, res) => {
     res.clearCookie('jwt');
     res.json({ message: 'Logged out' });
   } catch (e) {
-    res.status(500).json({ error: e.toString() });
+    res.status(500).json({ error: e.message });
   }
 };
 
@@ -75,6 +76,22 @@ exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find().populate('posts', 'body createdAt');
     res.status(200).json(users);
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+};
+// ***********************************************//
+// Get specific user
+// ***********************************************//
+exports.getSpecificUser = async (req, res) => {
+  try {
+    const user = await (
+      await User.findById(req.params.id).populate({
+        path: 'followers following',
+        select: 'username'
+      })
+    ).execPopulate();
+    res.status(200).json(user);
   } catch (e) {
     res.status(400).json({ error: e.message });
   }

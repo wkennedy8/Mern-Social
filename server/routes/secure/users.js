@@ -4,10 +4,12 @@ const {
   getAllUsers,
   followUser,
   logoutUser,
-  getFeed
+  getFeed,
+  getSpecificUser
 } = require('../../controllers/users');
 
 router.get('/me', getCurrentUser);
+router.get('/:id', getSpecificUser);
 router.get('/', getAllUsers);
 router.get('/feed', getFeed);
 router.post('/:id', followUser);
