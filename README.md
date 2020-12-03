@@ -8,6 +8,6 @@
 
 ### Start Up in Development
 
-- [ ] If you only want to run the server use the command `yarn server`
-- [ ] If you want to run the server and frontend concurrently use the command `yarn dev`
-- [ ] If you want to reset your database use the command `yarn db:reset`
+- [ ] If you only want to run the **server** use the command `yarn server`
+- [ ] If you want to run the **server and frontend** concurrently use the command `yarn dev`
+- [ ] If you want to **reset your database** use the command `yarn db:reset`
