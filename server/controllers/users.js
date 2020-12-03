@@ -159,7 +159,7 @@ exports.getFeed = async (req, res) => {
         populate: {
           path: 'posts',
           populate: {
-            path: 'comments likes',
+            path: 'comments likes user',
             select: 'username body createdAt user',
             populate: { path: 'user', select: 'username' }
           }

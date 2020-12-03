@@ -22,7 +22,7 @@ const Post = ({ post }) => {
   const checkIfLiked = () => {
     return post.likes.some(({ _id }) => _id === currentUser?._id);
   };
-  // console.log(checkIfLiked());
+  console.log(post);
   return (
     <div style={{ width: 500 }}>
       <Paper className="mt-4">
