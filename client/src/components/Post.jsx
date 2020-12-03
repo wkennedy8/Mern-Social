@@ -12,8 +12,7 @@ const Post = ({ post }) => {
   const handleLike = async (id) => {
     setLoading(true);
     try {
-      const { data } = await axios.put(`/api/posts/${id}`);
-      console.log(data);
+      await axios.put(`/api/posts/${id}`);
       setLoading(false);
     } catch (error) {
       alert(error.message);
@@ -23,7 +22,10 @@ const Post = ({ post }) => {
     <div style={{ width: 500 }}>
       <Paper className="mt-4">
         <Typography>{post.body}</Typography>
-        <Typography> - {post.user}</Typography>
+        <Typography>
+          {' '}
+          - <Link to={`/users/${post.user._id}`}>{post.user.username}</Link>
+        </Typography>
         <Accordion>
           <Typography>
             {post.likes.length}
@@ -36,7 +38,6 @@ const Post = ({ post }) => {
             Comments
           </Accordion.Toggle>
           {post.comments.map((comment, i) => {
-            console.log(post);
             return (
               <Accordion.Collapse eventKey="0" key={i}>
                 <Typography>

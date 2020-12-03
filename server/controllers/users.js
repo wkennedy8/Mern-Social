@@ -114,7 +114,7 @@ exports.followUser = async (req, res) => {
         return id.toString() !== userToFollow._id.toString();
       });
       await req.user.save();
-      return res.status(400).json({
+      return res.status(200).json({
         message: `You have unfollowed ${userToFollow.username}`
       });
     }
@@ -146,7 +146,7 @@ exports.getFeed = async (req, res) => {
       .populate({
         path: 'posts',
         populate: {
-          path: 'comments likes',
+          path: 'comments likes user',
           select: 'username body createdAt user',
           populate: { path: 'user', select: 'username' }
         }
