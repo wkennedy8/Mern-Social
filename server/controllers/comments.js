@@ -5,15 +5,14 @@ const Post = require('../db/models/post');
 // ***********************************************//
 exports.createComment = async (req, res) => {
   try {
-    const comment = await new Comment({
-      owner: req.user._id,
-      ...req.body
-    });
+    const comment = new Comment({ user: req.user._id, ...req.body });
     await comment.save();
     const post = await Post.findById(req.params.postId);
     post.comments.push(comment._id);
     await post.save();
-    await post.populate('comments', 'body').execPopulate();
+    await post
+      .populate({ path: 'comments likes', select: 'body username' })
+      .execPopulate();
     res.status(200).json(post);
   } catch (e) {
     res.status(400).json({ error: e.message });
@@ -28,6 +27,6 @@ exports.getAllComments = async (req, res) => {
     const comments = Comment.find();
     res.status(200).json(comments);
   } catch (e) {
-    res.status(200).json({ error: e.message });
+    res.status(400).json({ error: e.message });
   }
 };

@@ -15,6 +15,12 @@ const channelSchema = new mongoose.Schema(
         ref: 'User'
       }
     ],
+    messages: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Message'
+      }
+    ],
     description: {
       type: String
     }
@@ -23,12 +29,6 @@ const channelSchema = new mongoose.Schema(
     timestamps: true
   }
 );
-
-channelSchema.virtual('messages', {
-  ref: 'Message',
-  localField: '_id',
-  foreignField: 'sender'
-});
 
 const Channel = mongoose.model('Channel', channelSchema);
 

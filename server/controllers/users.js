@@ -46,10 +46,9 @@ exports.loginUser = async (req, res) => {
 // Logout a user
 // ***********************************************//
 exports.logoutUser = async (req, res) => {
-  console.log('req: ', req);
   try {
-    req.user.tokens = req.user.tokens.filter((token) => {
-      return token.token !== req.cookies.jwt;
+    req.user.tokens = req.user.tokens.filter(({ token }) => {
+      return token !== req.cookies.jwt;
     });
     await req.user.save();
     res.clearCookie('jwt');
@@ -65,7 +64,7 @@ exports.logoutUser = async (req, res) => {
 exports.getCurrentUser = async (req, res) => {
   await req.user.populate('following', 'username').execPopulate();
   await req.user.populate('followers', 'username').execPopulate();
-  await req.user.populate('posts', 'body title createdAt').execPopulate();
+  await req.user.populate('posts').execPopulate();
   res.json(req.user);
 };
 
@@ -74,7 +73,7 @@ exports.getCurrentUser = async (req, res) => {
 // ***********************************************//
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await User.find().populate('posts', 'body createdAt');
+    const users = await User.find().populate('posts');
     res.status(200).json(users);
   } catch (e) {
     res.status(400).json({ error: e.message });
@@ -145,17 +144,30 @@ exports.getFeed = async (req, res) => {
     const feed = await req.user
       //This populates my OWN posts with only the "body", "title", "createdAt" fields
       .populate({
-        path: 'posts'
+        path: 'posts',
+        populate: {
+          path: 'comments likes',
+          select: 'username body createdAt user',
+          populate: { path: 'user', select: 'username' }
+        }
+        // populate: { path: 'user', select: 'username' }
       })
       // This populates the posts of the people I am following
       .populate({
         path: 'following',
         select: 'username posts',
-        populate: { path: 'posts', populate: { path: 'comments likes' } }
+        populate: {
+          path: 'posts',
+          populate: {
+            path: 'comments likes',
+            select: 'username body createdAt user',
+            populate: { path: 'user', select: 'username' }
+          }
+        }
       })
       .execPopulate();
-    feed.following.forEach((post) =>
-      post.posts.forEach((post) => {
+    feed.following.forEach((doc) =>
+      doc.posts.forEach((post) => {
         array.push(post);
       })
     );

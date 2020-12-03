@@ -11,8 +11,8 @@ const {
 router.get('/me', getCurrentUser);
 router.get('/:id', getSpecificUser);
 router.get('/', getAllUsers);
-router.get('/feed', getFeed);
-router.post('/:id', followUser);
-router.post('/logout', logoutUser);
+router.get('/feed/:id', getFeed);
+router.put('/:id', followUser);
+router.post('/logout/:id', logoutUser);
 
 module.exports = router;

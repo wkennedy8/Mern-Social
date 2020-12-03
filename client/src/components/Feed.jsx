@@ -5,12 +5,12 @@ import Post from './Post';
 import axios from 'axios';
 
 const Feed = () => {
-  const { loading } = useContext(AppContext);
+  const { loading, currentUser } = useContext(AppContext);
   const [feed, setFeed] = useState([]);
 
   const getFeed = async () => {
     try {
-      const { data } = await axios.get('/api/users/feed', {
+      const { data } = await axios.get(`/api/users/feed/${currentUser?._id}`, {
         withCredentials: true
       });
       setFeed(data);
@@ -20,7 +20,9 @@ const Feed = () => {
   };
 
   useEffect(() => {
+    // console.log('hit');
     getFeed();
+    // eslint-disable-next-line
   }, [loading]);
 
   return (
