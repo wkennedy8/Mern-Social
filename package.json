@@ -27,5 +27,8 @@
     "dev": "concurrently \"yarn run server\" \"yarn run client\"",
     "db:reset": "node server/db/seeds",
     "heroku-postbuild": "cd client && yarn && yarn run build"
+  },
+  "engines": {
+    "node": ">= 14.0.0"
   }
 }
