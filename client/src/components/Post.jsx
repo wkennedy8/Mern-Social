@@ -18,6 +18,11 @@ const Post = ({ post }) => {
       alert(error.message);
     }
   };
+
+  const checkIfLiked = () => {
+    return post.likes.some(({ _id }) => _id === currentUser?._id);
+  };
+  // console.log(checkIfLiked());
   return (
     <div style={{ width: 500 }}>
       <Paper className="mt-4">
@@ -31,7 +36,7 @@ const Post = ({ post }) => {
             {post.likes.length}
             <AiOutlineLike
               onClick={() => handleLike(post._id)}
-              className={post.likes.includes(currentUser?._id) ? 'green' : ''}
+              className={checkIfLiked() ? 'green' : ''}
             />
           </Typography>
           <Accordion.Toggle as={Button} variant="link" eventKey="0">

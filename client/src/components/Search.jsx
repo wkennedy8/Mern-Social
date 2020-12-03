@@ -44,7 +44,12 @@ const Search = () => {
 
   return (
     <div ref={wrapperRef}>
-      <Form.Control type="text" name="search" onChange={handleChange} />
+      <Form.Control
+        type="text"
+        name="search"
+        onChange={handleChange}
+        autoComplete="off"
+      />
       {display && (
         <div>
           {options
