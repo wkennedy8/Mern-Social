@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Avatar } from '@material-ui/core';
+import { Avatar, Paper } from '@material-ui/core';
 import axios from 'axios';
 
 const Search = () => {
@@ -53,10 +53,10 @@ const Search = () => {
             )
             .map((user) => (
               <Link key={user._id} to={`/users/${user._id}`}>
-                <div>
+                <Paper>
                   <Avatar src={user.avatar} alt={user.username} />
                   <p>{user.username}</p>
-                </div>
+                </Paper>
               </Link>
             ))}
         </div>

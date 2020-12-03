@@ -7,8 +7,6 @@ import { AppContext } from '../context/AppContext';
 const Login = ({ history }) => {
   const [formData, setFormData] = useState(null);
   const { setCurrentUser } = useContext(AppContext);
-  const user = document.cookie;
-  console.log(user);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
