@@ -39,6 +39,8 @@ const Profile = ({ match, history }) => {
   const followCheck = () => {
     return user?.followers.some(({ _id }) => _id === currentUser?._id);
   };
+
+  const handleClick = () => {};
   return (
     <div>
       <Button variant="" onClick={() => history.goBack()}>
@@ -48,6 +50,7 @@ const Profile = ({ match, history }) => {
       <Button onClick={handleFollow}>
         {followCheck() ? 'Unfollow' : 'Follow'}
       </Button>
+      <Button onClick={handleClick}>Send Message</Button>
     </div>
   );
 };
