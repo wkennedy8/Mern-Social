@@ -9,6 +9,8 @@ const express = require('express'),
   userRoutes = require('./routes/secure/users'),
   postRoutes = require('./routes/secure/posts'),
   commentRoutes = require('./routes/secure/comments'),
+  channelRoutes = require('./routes/secure/channels'),
+  messageRoutes = require('./routes/secure/messages'),
   fileUpload = require('express-fileupload');
 
 // Parse incoming JSON into objects
@@ -38,6 +40,8 @@ app.use('/api/*', passport.authenticate('jwt', { session: false }));
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/posts/:postId', commentRoutes);
+app.use('/api/conversations', channelRoutes);
+app.use('/api/conversations/:id/message', messageRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   // Handle React routing, return all requests to React app

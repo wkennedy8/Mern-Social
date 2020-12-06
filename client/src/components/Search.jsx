@@ -47,6 +47,7 @@ const Search = () => {
       <Form.Control
         type="text"
         name="search"
+        placeholder="Find a friend..."
         onChange={handleChange}
         autoComplete="off"
       />

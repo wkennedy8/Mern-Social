@@ -4,15 +4,13 @@ const channelSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
-      lowercase: true,
-      trim: true,
-      unique: true
+      default: 'Direct Message'
     },
     members: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
       }
     ],
     messages: [
@@ -20,10 +18,7 @@ const channelSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Message'
       }
-    ],
-    description: {
-      type: String
-    }
+    ]
   },
   {
     timestamps: true
