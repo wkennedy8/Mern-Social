@@ -28,7 +28,7 @@ const Chat = ({ history }) => {
     setLoading(true);
     const form = e.target;
     try {
-      const { data } = await axios.post(
+      await axios.post(
         `/api/conversations/${conversation[0]?._id}/message`,
         {
           body: e.target.elements.message.value
@@ -47,7 +47,11 @@ const Chat = ({ history }) => {
       <Button onClick={() => history.goBack()}>Go Back</Button>
       {conversation[0]?.messages.map((message) => {
         return (
-          <Paper key={message._id}>
+          <Paper
+            key={message._id}
+            className="mb-2 d-flex align-items-center"
+            style={{ height: 100 }}
+          >
             <Typography>
               {message.sender.username}: {message.body} {message.createdAt}
             </Typography>
