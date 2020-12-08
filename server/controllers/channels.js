@@ -12,7 +12,7 @@ exports.createChannel = async (req, res) => {
       populate: { path: 'sender', select: 'username' }
     })
     .exec();
-  if (existingChannel.length) {
+  if (existingChannel) {
     return res.status(200).json(existingChannel);
   }
   try {
