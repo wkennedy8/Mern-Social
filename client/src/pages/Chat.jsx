@@ -35,7 +35,6 @@ const Chat = ({ history }) => {
         },
         { withCredentials: true }
       );
-      console.log(data);
       form.reset();
       setLoading(false);
     } catch (error) {
@@ -43,7 +42,6 @@ const Chat = ({ history }) => {
     }
   };
 
-  console.log(conversation);
   return (
     <Container>
       <Button onClick={() => history.goBack()}>Go Back</Button>
