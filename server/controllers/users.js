@@ -142,6 +142,7 @@ exports.getFeed = async (req, res) => {
   try {
     let array = [];
     const feed = await req.user
+
       //This populates my OWN posts with only the "body", "title", "createdAt" fields
       .populate({
         path: 'posts',
@@ -150,8 +151,8 @@ exports.getFeed = async (req, res) => {
           select: 'username body createdAt user',
           populate: { path: 'user', select: 'username' }
         }
-        // populate: { path: 'user', select: 'username' }
       })
+
       // This populates the posts of the people I am following
       .populate({
         path: 'following',

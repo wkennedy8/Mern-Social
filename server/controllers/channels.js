@@ -1,10 +1,23 @@
 const Channel = require('../db/models/channel');
 
 exports.createChannel = async (req, res) => {
+  const ids = [req.user._id, req.body.user];
+  const existingChannel = await Channel.find()
+    .where('members')
+    .in(ids)
+    .populate({ path: 'members', select: 'username' })
+    .populate({
+      path: 'messages',
+      select: 'body createdAt sender',
+      populate: { path: 'sender', select: 'username' }
+    })
+    .exec();
+  if (existingChannel.length) {
+    return res.status(200).json(existingChannel);
+  }
   try {
-    const { user } = req.body;
     const channel = new Channel({
-      members: [user, req.user._id]
+      members: [req.body.user, req.user._id]
     });
     await channel.save();
     await channel

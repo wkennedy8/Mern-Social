@@ -6,6 +6,7 @@ import SignUp from './pages/SignUp';
 import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 import Profile from './pages/Profile';
+import Chat from './pages/Chat';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/signup" component={SignUp} />
           <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute exact path="/users/:id" component={Profile} />
+          <PrivateRoute exact path="/chat/:id" component={Chat} />
         </Switch>
       </BrowserRouter>
     </AppContextProvider>

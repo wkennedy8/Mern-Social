@@ -40,7 +40,9 @@ const Profile = ({ match, history }) => {
     return user?.followers.some(({ _id }) => _id === currentUser?._id);
   };
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    history.push(`/chat/${user._id}`);
+  };
   return (
     <div>
       <Button variant="" onClick={() => history.goBack()}>
