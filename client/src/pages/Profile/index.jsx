@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Button } from 'react-bootstrap';
-import { AppContext } from '../context/AppContext';
+import { AppContext } from '../../context/AppContext';
 import axios from 'axios';
 
 const Profile = ({ match, history }) => {

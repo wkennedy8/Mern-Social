@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { AppContext } from '../context/AppContext';
+import { AppContext } from '../../context/AppContext';
 
 const SignUp = ({ history }) => {
   const [formData, setFormData] = useState(null);
@@ -24,33 +23,39 @@ const SignUp = ({ history }) => {
     }
   };
   return (
-    <Container className="container d-flex flex-column align-items-center justify-content-center fullscreen">
+    <div>
       <h2 className="mb-4">Welcome</h2>
-      <Form style={{ width: 300 }} onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label>Username</Form.Label>
-          <Form.Control type="text" onChange={handleChange} name="username" />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="email" onChange={handleChange} name="email" />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
+      <form style={{ width: 300 }} onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            onChange={handleChange}
+            name="username"
+            id="username"
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input type="email" onChange={handleChange} name="email" id="email" />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
             type="password"
             onChange={handleChange}
             name="password"
+            id="password"
           />
-        </Form.Group>
-        <Form.Group className="d-flex justify-content-center">
-          <Button type="submit">Create Account</Button>
-        </Form.Group>
-      </Form>
+        </div>
+        <div>
+          <button type="submit">Create Account</button>
+        </div>
+      </form>
       <Link className="mt-4" to="/login">
         Already have an account? Login
       </Link>
-    </Container>
+    </div>
   );
 };
 
