@@ -1,0 +1,105 @@
+.createPostContainer {
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(221, 223, 226);
+  border-radius: 3px;
+  margin: 10px 0px 0px 0.5em;
+  width: 500px;
+}
+
+.formContainer {
+  padding: 10px;
+  margin: 0px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+header:first-child {
+  background: rgb(245, 246, 247);
+  border-radius: 3px 3px 0px 0px;
+  padding: 10px;
+  margin: 0px;
+}
+
+.heading {
+  margin: 0px;
+  color: rgb(80, 79, 82);
+  font-size: 0.9em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.textBox {
+  outline: none;
+  border: none;
+  resize: none;
+  font-size: 0.9em;
+  letter-spacing: 0.02em;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.addPhotos {
+  padding: 6px 10px;
+  font-size: 0.8em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgb(51, 51, 51);
+  border-radius: 3px;
+  cursor: pointer;
+  background: rgb(245, 246, 247);
+  border: 1px solid rgb(204, 208, 213);
+}
+
+.postButton {
+  background: rgb(157, 183, 210);
+  border: 1px solid rgb(157, 183, 210);
+  cursor: default;
+  padding: 6px 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: 3px;
+  color: white;
+}
+
+.postButtonSubmit {
+  background: #4168b4;
+  border: 1px solid rgb(157, 183, 210);
+  cursor: default;
+  padding: 6px 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: 3px;
+  color: white;
+}
+
+.previewImageContainer {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0px 10px 10px 0px;
+  overflow: hidden;
+}
+
+.previewImageContainer svg {
+  position: absolute;
+  top: 3px;
+  left: 100px;
+  bottom: 0;
+  color: white;
+}
+.previewImageContainer svg:hover {
+  cursor: pointer;
+}
+
+.previewImage {
+  width: 100%;
+  object-fit: cover;
+}

@@ -1,15 +1,36 @@
-const Post = require('../db/models/post');
+const Post = require('../db/models/post'),
+  cloudinary = require('cloudinary').v2;
 
 // ***********************************************//
 // Create a post
 // ***********************************************//
 exports.createPost = async (req, res) => {
   try {
-    const post = await new Post({ ...req.body, user: req.user._id });
+    let image;
+    if (req.files) {
+      const res = await cloudinary.uploader.upload(
+        req.files.image.tempFilePath
+      );
+      image = res.secure_url;
+    }
+
+    const post = await new Post({ ...req.body, image, user: req.user._id });
     await post.save();
+    console.log(post);
     req.user.posts.push(post._id);
     await req.user.save();
     res.status(200).json(post);
+
+    // try {
+    //   const response = await cloudinary.uploader.upload(
+    //     req.files.avatar.tempFilePath
+    //   );
+    //   req.user.avatar = response.secure_url;
+    //   await req.user.save();
+    //   res.json(response);
+    // } catch (error) {
+    //   res.status(400).json({ error: error.message });
+    // }
   } catch (e) {
     res.status(400).json({ error: e.message });
   }

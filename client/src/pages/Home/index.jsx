@@ -1,14 +1,11 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
-import Feed from '../../components/Feed';
-import Search from '../../components/Search';
+import CreatePost from '../../components/CreatePost';
 
 const Home = () => {
   return (
-    <Container>
-      <Search />
-      <Feed />
-    </Container>
+    <div>
+      <CreatePost />
+    </div>
   );
 };
 
