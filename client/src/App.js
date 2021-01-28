@@ -6,11 +6,13 @@ import Register from './pages/Register';
 import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 import Profile from './pages/Profile';
+import Navigation from './components/Navigation';
 
 function App() {
   return (
     <AppContextProvider>
       <BrowserRouter>
+        <Navigation />
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Register} />

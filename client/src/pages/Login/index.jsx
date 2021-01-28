@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { AppContext } from '../../context/AppContext';
+import styles from './login.module.css';
 
 const Login = ({ history }) => {
   const [formData, setFormData] = useState(null);
@@ -23,22 +24,34 @@ const Login = ({ history }) => {
     }
   };
   return (
-    <div>
-      <h2>Welcome Back</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <h2>Welcome Back</h2>
+        <div className={styles.username}>
           <label>Username</label>
-          <input type="text" onChange={handleChange} name="username" />
+          <input
+            type="text"
+            onChange={handleChange}
+            name="username"
+            autoComplete="off"
+          />
         </div>
-        <div>
+        <div className={styles.password}>
           <label>Password</label>
-          <input type="password" onChange={handleChange} name="password" />
+          <input
+            type="password"
+            onChange={handleChange}
+            name="password"
+            autoComplete="off"
+          />
         </div>
         <div>
           <button type="submit">Login</button>
         </div>
+        <p>
+          Don't have an account? <Link to="/signup">Register here</Link>
+        </p>
       </form>
-      <Link to="/signup">Need an Account? Sign Up</Link>
     </div>
   );
 };

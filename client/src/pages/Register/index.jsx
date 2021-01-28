@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { AppContext } from '../../context/AppContext';
+import styles from './register.module.css';
 
 const SignUp = ({ history }) => {
   const [formData, setFormData] = useState(null);
@@ -23,38 +24,46 @@ const SignUp = ({ history }) => {
     }
   };
   return (
-    <div>
-      <h2 className="mb-4">Welcome</h2>
-      <form style={{ width: 300 }} onSubmit={handleSubmit}>
-        <div>
+    <div className={styles.container}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <h2>Welcome</h2>
+        <div className={styles.username}>
           <label htmlFor="username">Username</label>
           <input
             type="text"
             onChange={handleChange}
             name="username"
             id="username"
+            autoComplete="off"
           />
         </div>
-        <div>
+        <div className={styles.email}>
           <label htmlFor="email">Email</label>
-          <input type="email" onChange={handleChange} name="email" id="email" />
+          <input
+            type="email"
+            onChange={handleChange}
+            name="email"
+            id="email"
+            autoComplete="off"
+          />
         </div>
-        <div>
+        <div className={styles.password}>
           <label htmlFor="password">Password</label>
           <input
             type="password"
             onChange={handleChange}
             name="password"
             id="password"
+            autoComplete="off"
           />
         </div>
         <div>
           <button type="submit">Create Account</button>
         </div>
+        <p>
+          Already have an account? <Link to="/login">Login here</Link>
+        </p>
       </form>
-      <Link className="mt-4" to="/login">
-        Already have an account? Login
-      </Link>
     </div>
   );
 };
