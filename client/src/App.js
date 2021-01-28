@@ -13,12 +13,14 @@ function App() {
     <AppContextProvider>
       <BrowserRouter>
         <Navigation />
-        <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Register} />
-          <PrivateRoute exact path="/" component={Home} />
-          <PrivateRoute exact path="/users/:id" component={Profile} />
-        </Switch>
+        <div className="app-container">
+          <Switch>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Register} />
+            <PrivateRoute exact path="/" component={Home} />
+            <PrivateRoute exact path="/users/:id" component={Profile} />
+          </Switch>
+        </div>
       </BrowserRouter>
     </AppContextProvider>
   );

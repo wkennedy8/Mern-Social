@@ -1,12 +1,13 @@
 .container {
   height: 3.75rem;
   background-color: #4168b4;
+  width: 100%;
 }
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 15rem;
+  margin: 0 150px 0 150px;
   height: 100%;
 }
 .heading {
