@@ -13,8 +13,13 @@ exports.createPost = async (req, res) => {
       );
       image = res.secure_url;
     }
-    const post = await new Post({ ...req.body, image, user: req.user._id });
+    const post = await new Post({
+      ...req.body,
+      image,
+      user: req.user._id
+    });
     await post.save();
+    console.log(post);
     req.user.posts.push(post._id);
     await req.user.save();
     res.status(200).json(post);

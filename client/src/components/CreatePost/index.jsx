@@ -36,10 +36,11 @@ const CreatePost = () => {
       setLoading(true);
       const post = new FormData();
       post.append('image', formData.image);
-      post.set('caption', formData.caption);
+      if (formData?.caption) post.set('caption', formData.caption);
       await axios.post('/api/posts', post);
       form.reset();
       setPreviewImage(false);
+      setFormData(null);
       setLoading(false);
     } catch (error) {
       alert(error.message);

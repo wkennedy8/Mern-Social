@@ -1,0 +1,60 @@
+.menuCard {
+  background: white;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #dddfe2;
+  padding: 1rem;
+  margin: 1rem 1rem;
+  height: 350px;
+  /* width: 200px; */
+}
+
+.userInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em 0 1em 0;
+  border-bottom: 1px solid #f7f7f7;
+}
+.menuCard h1 {
+  font-size: 1.3rem;
+  padding: 1em 0 0 0;
+}
+.userPicture {
+  width: 3em;
+  height: 3em;
+  border: 5px solid whitesmoke;
+  display: flex;
+  justify-content: center;
+}
+
+.userPicture img {
+  width: auto;
+  height: 100%;
+}
+
+.sidenav {
+  text-align: center;
+}
+
+.sidenav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidenav li {
+  margin: 0;
+  padding: 0.5em 2em;
+  border-radius: 3px;
+  border-bottom: 1px solid #f7f7f7;
+}
+
+.sidenav li:hover {
+  background-color: #4168b4;
+  color: white;
+  cursor: pointer;
+}
